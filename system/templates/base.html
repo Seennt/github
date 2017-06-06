@@ -1,0 +1,110 @@
+<!doctype html>
+{% load i18n bootstrap3 compress static %}
+<html {% if request.LANGUAGE_CODE %} lang="{{ request.LANGUAGE_CODE }}"{% endif %}>
+<head>
+<!-- META html meta data -->
+{% include 'meta.html' %}
+
+<!-- CSS external style sheets -->
+{% include 'style.html' %}
+
+<!-- JS/JQUERY external scripts -->
+{% include 'script.html' %}
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- NAVIGATION Display menu items -->
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        <a class="navbar-brand" href="/">
+            <span><img src="{% static "img/logo.png" %}" width="50" class="img-circle" alt="Company logo"></span>
+            seennt
+        </a>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sites <b class="caret"></b></a>
+                <ul class="dropdown-menu dropdown-menu-left">
+                {% for item in sites %}
+                    {% if item.site %}
+                        {% if item.glyphicon %}
+                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+                            <a href="{% url item.name|add:':index' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
+                        </li>
+                        {% else %}
+                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+                            <a href="{% url item.name|add:':index' %}">{{ item.verbose_name }}</a>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </li>
+
+            {% for item in labels %}
+                {% if not item.site %}
+                        {% if item.glyphicon %}
+                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+                            <a href="{% url item.name|add:':index' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
+                        </li>
+                        {% else %}
+                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+                            <a href="{% url item.name|add:':index' %}">{{ item.verbose_name }}</a>
+                        </li>
+                        {% endif %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <br/><br/>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 jumbotron-layer">
+                <h1 style="font-weight: bold">seennt</h1>
+                <h2>Hightech & low complexity...</h2>
+                <p>Connectiing devices with Internet of things(IoT). Sophisticated Printed circuit
+                boards(PCB) decreases complexity.</p>
+                <p>
+                    <a class="btn btn-primary btn-lg">Get connected...</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT Display all content divided in main and detailed -->
+<div class="container">
+{% block main %}{% endblock %}
+</div>
+
+<footer class="footer">
+<div class="container">
+    <div class="text-center center-block">
+        {% block footer %}
+            <p class="text-muted">info@seennt.com | Social links</p>
+        {% endblock %}
+    </div>
+</div>
+</footer>
+
+</body>
+</html>
