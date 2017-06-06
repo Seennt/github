@@ -41,7 +41,7 @@ This repo is for development and testing purpose.
     $ git init
     $ git add -A
     
-    $ git remote add github https://github.com/Seennt/github.git
+    $ git remote add github https://github.com/Seennt/system.git
     $ git remote -v
     $ git commit -m "Initial commit"
     $ heroku create seennt --region eu
@@ -94,10 +94,9 @@ Reply with the following:
 
 # Frontend
 This seennt platform will be equipped with the Django Template language(DTL) in combination with:
-- HTML 5 Boilerplate
-- Bootstrap 3
-
-Don't start from scratch start with [initializr](http://www.initializr.com/)
+- HTML 5 Boilerplate structure
+- Bootstrap 3 
+- Bootstrap sass
 
 ## HTML 5 Boilerplate
 The focus is on the backend, nevertheless DRY coding is still preferred as 
@@ -105,6 +104,7 @@ The focus is on the backend, nevertheless DRY coding is still preferred as
 project structure.
 
 ## Bootstrap 3
+Seennt system is equipped with bootstrap3 and bootstrap3-sass, to compile sass django_compressor is required.
 
 ## License: MIT
 
