@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
-    # Required system applications
-    'system.frontend',
+    # System required packages
+    'bootstrap3',
+    'bootstrap3_sass',
+    'compressor',
 
     # System applications
     'application.seennt.apps.SeenntConfig',
@@ -63,7 +65,10 @@ ROOT_URLCONF = 'system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # Main template directory
+            os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +135,13 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # Other finders..
+    'compressor.finders.CompressorFinder',
+)
+
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
@@ -138,3 +150,14 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# An iterable of two-tuples whose first item is the mimetype of the files or hunks
+# you want to compile with the command or filter specified as the second item
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+# Controls the absolute file path that linked static will be read from.
+COMPRESS_ROOT = os.path.join(PROJECT_ROOT, 'static', 'scss')
+
+# Controls the directory inside COMPRESS_ROOT that compressed files will be written to.
+COMPRESS_OUTPUT_DIR = 'cache'
