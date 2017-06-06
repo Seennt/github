@@ -1,0 +1,6 @@
+*.pyc
+staticfiles
+.env
+.idea
+virtual
+db.sqlite3
