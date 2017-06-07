@@ -125,8 +125,8 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['localhost']
-# ALLOWED_HOSTS = ['seennt.com']
+# ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['seennt.com']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
