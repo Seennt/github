@@ -98,6 +98,9 @@ This seennt platform will be equipped with the Django Template language(DTL) in 
 - Bootstrap 3 
 - Bootstrap sass
 
+## Favicon
+Generate a fanvicon online for instance [here](http://realfavicongenerator.net/).
+
 ## HTML 5 Boilerplate
 The focus is on the backend, nevertheless DRY coding is still preferred as 
 [a best practise](http://www.marinamele.com/2014/02/django-best-practices-ii-project.html) for creating a 
@@ -106,7 +109,7 @@ project structure.
 ## Bootstrap 3
 Seennt system is equipped with bootstrap3 and bootstrap3-sass, to compile sass django_compressor is required.
 
-#SASS
+#### SASS
 To compress SASS via django-compressor make sure compress_offline is set in settings.py. Furthermore configure
 post_compile is installed according [heroku django cookbook](https://github.com/nigma/heroku-django-cookbook).
 
