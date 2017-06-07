@@ -16,7 +16,6 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -41,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # System required packages
+    'compressor',
     'bootstrap3',
     'bootstrap3_sass',
-    'compressor',
 
     # System applications
     'application.seennt.apps.SeenntConfig',
@@ -67,7 +66,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # Main template directory
-            os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
+            os.path.join(PROJECT_ROOT, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -83,7 +82,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'system.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -127,8 +125,8 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['seennt.com']
+ALLOWED_HOSTS = ['localhost']
+# ALLOWED_HOSTS = ['seennt.com']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -157,8 +155,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = True
+
+COMPRESS_PARSER = 'compressor.parser.HtmlParser'
+
 # Controls the absolute file path that linked static will be read from.
-COMPRESS_ROOT = os.path.join(PROJECT_ROOT, 'static', 'scss')
+# COMPRESS_ROOT = os.path.join(PROJECT_ROOT, 'static', 'scss')
 
 # Controls the directory inside COMPRESS_ROOT that compressed files will be written to.
 COMPRESS_OUTPUT_DIR = 'cache'
