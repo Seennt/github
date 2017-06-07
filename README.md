@@ -106,6 +106,12 @@ project structure.
 ## Bootstrap 3
 Seennt system is equipped with bootstrap3 and bootstrap3-sass, to compile sass django_compressor is required.
 
+#SASS
+To compress SASS via django-compressor make sure compress_offline is set in settings.py. Furthermore configure
+post_compile is installed according [heroku django cookbook](https://github.com/nigma/heroku-django-cookbook).
+
+- As a remark: Static folder should be managed correctly.
+
 ## License: MIT
 
 ## Pycharm:
