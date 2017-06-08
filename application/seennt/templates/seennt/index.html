@@ -1,6 +1,29 @@
 {% extends 'base.html' %}
+{% load compress static i18n bootstrap3 %}
 
-{% block main %}
-<h3>Standby</h3>
-<p>Currently our system is getting improved...</p>
+<!-- META html meta data -->
+{% block meta %}
+{% include 'seennt/meta.html' %}
+{% endblock %}
+
+<!-- CSS external style sheets -->
+{% block style %}
+{% include 'seennt/style.html' %}
+{% endblock %}
+
+<!-- JS/JQUERY external scripts -->
+{% block script %}
+{% include 'seennt/script.html' %}
+{% endblock %}
+
+{% block header %}
+{% include 'seennt/header.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'seennt/content.html' %}
+{% endblock %}
+
+{% block footer %}
+{% include 'seennt/footer.html' %}
 {% endblock %}

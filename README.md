@@ -2,6 +2,23 @@
 
 This repo is for development and testing purpose.
 
+# Project documentation
+A structured manner to write documentation for the platform and each individual application.
+
+## Production & Development
+Production settings:
+ - ALLOW_HOST
+ - DEBUG
+ 
+The gap between production and development should be a small as possible. Via GIT
+version control is maintained. So code can be converted back. 
+
+- A stable commit **Version: v0.1: Standby release**
+
+#### Database
+In relation to production & development gap, a proper workflow should be defined how to 
+maintain reliable database information.
+
 # Requirements
 - Install python 3.6.1
 - Install postgresql
@@ -36,7 +53,7 @@ This repo is for development and testing purpose.
 
 - virtual\Scripts\activate.bat
 
-## Deployment to Heroku
+## Deployment to Heroku via GITHUB
 
     $ git init
     $ git add -A
@@ -109,6 +126,9 @@ project structure.
 ## Bootstrap 3
 Seennt system is equipped with bootstrap3 and bootstrap3-sass, to compile sass django_compressor is required.
 
+- To optimize the frontend combine bootstrap3 with Django Template Language. 
+- Separate bootstrap3 in templates per function.
+    
 #### SASS
 To compress SASS via django-compressor make sure compress_offline is set in settings.py. Furthermore configure
 post_compile is installed according [heroku django cookbook](https://github.com/nigma/heroku-django-cookbook).
