@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load compress static i18n bootstrap3 %}
+
+<!-- META html meta data -->
+{% block meta %}
+{% include 'todo_list/meta.html' %}
+{% endblock %}
+
+<!-- CSS external style sheets -->
+{% block style %}
+{% include 'todo_list/style.html' %}
+{% endblock %}
+
+<!-- JS/JQUERY external scripts -->
+{% block script %}
+{% include 'todo_list/script.html' %}
+{% endblock %}
+
+{% block header %}
+{% include 'todo_list/header.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    {% include 'todo_list/content.html' %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'todo_list/footer.html' %}
+{% endblock %}
