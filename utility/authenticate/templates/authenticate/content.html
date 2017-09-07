@@ -1,0 +1,8 @@
+{% extends 'authenticate/index.html' %}
+{% load i18n bootstrap3 staticfiles compress %}
+
+{% block content %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% endblock %}

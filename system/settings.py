@@ -28,7 +28,8 @@ DEBUG = False
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'system.apps.SeenntAdminConfig',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -46,6 +47,11 @@ INSTALLED_APPS = [
 
     # System applications
     'application.seennt.apps.SeenntConfig',
+    'application.todo_list.apps.TodoListConfig',
+
+    # System utilities
+    'utility.authenticate.apps.AuthenticateConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -67,6 +73,7 @@ TEMPLATES = [
         'DIRS': [
             # Main template directory
             os.path.join(PROJECT_ROOT, 'templates'),
+            os.path.join(PROJECT_ROOT, 'templates', 'snippets'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -75,6 +82,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Custom context processor. Data availability for all templates.
+                'application.context_processors.labels_processor',
+                'application.context_processors.sites_processor',
             ],
             'debug': DEBUG,
         },
@@ -107,6 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = 'seennt:index'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/`
@@ -164,3 +177,66 @@ COMPRESS_PARSER = 'compressor.parser.HtmlParser'
 
 # Controls the directory inside COMPRESS_ROOT that compressed files will be written to.
 COMPRESS_OUTPUT_DIR = 'cache'
+
+
+# Default settings
+BOOTSTRAP3 = {
+
+    # The URL to the jQuery JavaScript file
+    'jquery_url': '//code.jquery.com/jquery.min.js',
+
+    # The Bootstrap base URL
+    'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/',
+
+    # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
+    'css_url': None,
+
+    # The complete URL to the Bootstrap CSS file (None means no theme)
+    'theme_url': None,
+
+    # The complete URL to the Bootstrap JavaScript file (None means derive it from base_url)
+    'javascript_url': None,
+
+    # LOAD THIS ONLY WHEN APPLICABLE!
+    # Put JavaScript in the HEAD section of the HTML document (only relevant if you use bootstrap3.html)
+    'javascript_in_head': True,
+
+    # Include jQuery with Bootstrap JavaScript (affects django-bootstrap3 template tags)
+    'include_jquery': False,
+
+    # Label class to use in horizontal forms
+    'horizontal_label_class': 'col-md-2',
+
+    # Field class to use in horizontal forms
+    'horizontal_field_class': 'col-md-10',
+
+    # Set HTML required attribute on required fields, for Django <= 1.8 only
+    'set_required': True,
+
+    # Set HTML disabled attribute on disabled fields, for Django <= 1.8 only
+    'set_disabled': False,
+
+    # Set placeholder attributes to label if no placeholder is provided
+    'set_placeholder': True,
+
+    # Class to indicate required (better to set this in your Django form)
+    'required_css_class': '',
+
+    # Class to indicate error (better to set this in your Django form)
+    'error_css_class': 'has-error',
+
+    # Class to indicate success, meaning the field has valid input (better to set this in your Django form)
+    'success_css_class': 'has-success',
+
+    # Renderers (only set these if you have studied the source and understand the inner workings)
+    'formset_renderers':{
+        'default': 'bootstrap3.renderers.FormsetRenderer',
+    },
+    'form_renderers': {
+        'default': 'bootstrap3.renderers.FormRenderer',
+    },
+    'field_renderers': {
+        'default': 'bootstrap3.renderers.FieldRenderer',
+        'inline': 'bootstrap3.renderers.InlineFieldRenderer',
+    },
+}

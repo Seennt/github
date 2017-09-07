@@ -1,0 +1,20 @@
+{% extends 'authenticate/content.html' %}
+{% load i18n bootstrap3 staticfiles compress %}
+{% block content %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <legend>You are logged out.</legend>
+                        <a href="{% url 'seennt:index' %}">Return to homepage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

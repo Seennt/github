@@ -1,0 +1,36 @@
+{% extends 'authenticate/content.html' %}
+{% load i18n bootstrap3 staticfiles compress %}
+{% block content %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="{% url 'authenticate:login' %}" method="post" role="form">
+                        {% csrf_token %}
+                        <legend>Welcome back! Please login?</legend>
+
+                        <div class="form-group">
+                            {{ form.username.html_name|capfirst }}
+                            <input type="text" name="{{ form.username.html_name }}" id="{{ form.username.auto_id }}" class="form-control" placeholder="Username...">
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.password.html_name|capfirst }}
+                            <input type="password" name="{{ form.password.name }}" id="{{ form.password.id }}" class="form-control" placeholder="Password...">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load compress static i18n bootstrap3 %}
+
+<!-- META html meta data -->
+{% block meta %}
+{% include 'share_score/meta.html' %}
+{% endblock %}
+
+<!-- CSS external style sheets -->
+{% block style %}
+{% include 'share_score/style.html' %}
+{% endblock %}
+
+<!-- JS/JQUERY external scripts -->
+{% block script %}
+{% include 'share_score/script.html' %}
+{% endblock %}
+
+{% block header %}
+{% include 'share_score/header.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    {% include 'share_score/content.html' %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'share_score/footer.html' %}
+{% endblock %}
