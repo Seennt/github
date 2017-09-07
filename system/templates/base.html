@@ -35,8 +35,6 @@
 <!-- BOOTSTRAP3 JQUERY -->
 {% if 'javascript_in_head'|bootstrap_setting %}{% bootstrap_javascript jquery=True %}{% endif %}
 {% block bootstrap3_extra_head %}{% endblock %}
-<!-- ADDITIONAL SCRIPTS -->
-{% block script %}{% endblock %}
 
 </head>
 <body>
@@ -50,6 +48,9 @@
 <footer class="footer">
 {% block footer %}{% endblock %}
 </footer>
+
+<!-- ADDITIONAL SCRIPTS -->
+{% block script %}{% endblock %}
 
 </body>
 </html>

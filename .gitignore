@@ -4,3 +4,14 @@ staticfiles
 .idea
 virtual
 db.sqlite3
+docs
+application/todo_list/Tasklist.md
+funda_fotografie
+todo_list
+application/__pycache__/
+application/seennt/__pycache__/
+application/seennt/management/__pycache__/
+application/seennt/migrations/__pycache__/
+system/__pycache__/
+system/templates/__pycache__/
+application/organizer/

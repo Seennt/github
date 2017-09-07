@@ -108,15 +108,15 @@ For now development is done at a windows machine, meaning that
 Reply with the following:
     
     'env' is not recognized as an inpipternal or external command, operable program or batch file.
-
+    
 # Frontend
 This seennt platform will be equipped with the Django Template language(DTL) in combination with:
 - HTML 5 Boilerplate structure
-- Bootstrap 3 
+- Bootstrap 3
 - Bootstrap sass
 
 ## Favicon
-Generate a fanvicon online for instance [here](http://realfavicongenerator.net/).
+Generate a favicon online for instance [here](http://realfavicongenerator.net/).
 
 ## HTML 5 Boilerplate
 The focus is on the backend, nevertheless DRY coding is still preferred as 
@@ -140,7 +140,7 @@ post_compile is installed according [heroku django cookbook](https://github.com/
 ## Pycharm:
 Rename interpreter to: Virtual environment <Version no.>
 
-Reroute project directory: trl+alt+s -> tools -> terminal, set project-path:
+Reroute project directory: CTRL+ALT+S > tools > terminal, set project-path:
 
     "mklink /J "C:/Users/<username>/Amazon drive/<project_name>" C:/Users/<username>/<project_name>"
 Therefor:

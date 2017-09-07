@@ -20,41 +20,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-
-            <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sites <b class="caret"></b></a>
-                <ul class="dropdown-menu dropdown-menu-left">
-                {% for item in sites %}
-                    {% if item.site %}
-                        {% if item.glyphicon %}
-                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
-                            <a href="{% url item.name|add:':index' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
-                        </li>
-                        {% else %}
-                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
-                            <a href="{% url item.name|add:':index' %}">{{ item.verbose_name }}</a>
-                        </li>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            </li>
-
-            {% for item in labels %}
-                {% if not item.site %}
-                        {% if item.glyphicon %}
-                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
-                            <a href="{% url item.name|add:':index' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
-                        </li>
-                        {% else %}
-                        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
-                            <a href="{% url item.name|add:':index' %}">{{ item.verbose_name }}</a>
-                        </li>
-                        {% endif %}
-                {% endif %}
-            {% endfor %}
-            </ul>
+            {% include 'snippets/navbar_links.html' %}
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>

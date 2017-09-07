@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from . import views
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', TemplateView.as_view(template_name="seennt/index.html"), name='index'),
 ]

@@ -18,5 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'', include('application.seennt.urls', namespace='seennt')),
+    url(r'^auth/', include('utility.authenticate.urls', namespace='authenticate')),
+    url(r'^todo-list/', include('application.todo_list.urls', namespace='todo-list')),
     url(r'^admin/', admin.site.urls),
 ]

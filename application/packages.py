@@ -43,7 +43,7 @@ class Item(object):
 
         if hasattr(application, 'name') and application.name:
             try:
-                name = application.name.split('.')[-1]
+                name = application.name.split('.')[-1].replace('_', '-')
             except IndexError:
                 raise Exception('No application name is defined.')
 

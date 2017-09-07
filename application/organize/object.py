@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 """ Module: data as part of: organize
 
-    Created by: Reinier on 16-8-2017. Collected data comes in a variety of formats. For re-usability data organisation
-    is a must. Based on media-type a file naming format is defined.
+    Created by: Reinier on 16-8-2017. Collected data comes in a variety of formats. Data should be organized in a
+    structured manner to achieve a better usability of available data like movies, series, pictures, documents, etc.
+    also known as media-type.
+
+    All gathered data by means of: mail, download, etc. is temporarily saved in a predefined location.
+    Data is undefined which means that object-names are raw and relevance isn’t added.
 
     Examples:
         Should be defined in a later state.
@@ -46,7 +50,7 @@ class Data(object):
 
 
 class Folder(Data):
-    """: The class: "Folder", is part of module: "data".
+    """: The class: "Folder", is part of module: "object".
 
     Provide a class description here. A good explanation of a class provides a higher readability of the code.
 
@@ -82,7 +86,7 @@ class Folder(Data):
 
 
 class File(Data):
-    """: The class: "File", is part of module: "data".
+    """: The class: "File", is part of module: "object".
 
     Provide a class description here. A good explanation of a class provides a higher readability of the code.
 
@@ -133,12 +137,20 @@ class File(Data):
         pass
 
 
-class Pattern(object):
-    """: The class: "Pattern", is part of module: "data".
+class Structure(object):
+    """: The class: "Structure", is part of module: "object".
 
-    Op basis van het media type(foto, muziek, film, serie, etc.) word gekeken naar de naam van het bestand.
-    Als er in de bestandsnaam een bepaald patroon herkend word dit patroon geretourneerd. De bestandsnaam bevat
-    ook de titel van het bestand, de titel is afhankelijk van het type media.
+    As an aspect of organizing data gathering information of an object is essential. Information that should be
+    gathered is a pattern and title and/or name. If this information can’t be gathered, manual selection via a
+    user interface should be possible.
+
+    Raw data can consists of several files, based on the media type a object size criteria is essential. In addition
+    supporting file should be kept and can be defined as exception files(subtitles).
+
+    The title and pattern will then be used to create the final location and file of folder object, relevant object.
+    I.e. For series a id is given like: S##E## based on it a (sub)folder like: “Season_##” is created.
+
+    A new object name in relation to a predefined name pattern following a naming convention is made.
 
     Note:
         Do not include the `self` parameter in the ``Args`` section.
@@ -164,8 +176,8 @@ class Pattern(object):
         self.dictionary = kwargs
         self.argument = args
 
-    def title(self, options=None):
-        """16-8-2017: The method: "title", is part of class: "Pattern".
+    def title_or_name(self, options=None):
+        """16-8-2017: The method: "title_or_name", is part of class: "Structure".
 
         A file name isn't always written clean. I.e. "The girlfriend experience" should be "The.girlfriend.experience".
 
@@ -185,7 +197,7 @@ class Pattern(object):
         return docstring_variable
 
     def predefined_name_pattern(self, options=None):
-        """16-8-2017: The method: "predefined_name_pattern", is part of class: "Pattern".
+        """16-8-2017: The method: "predefined_name_pattern", is part of class: "Structure".
 
         - Music: <<Artist>> <<Albumname>> <tracknumber>_<Title>
         - Pictures: ???
@@ -210,10 +222,13 @@ class Pattern(object):
 
 
 class Generate(object):
-    """: The class: "DataList", is part of module: "data".
+    """: The class: "Generate", is part of module: "object".
 
-    Load a list with files and folders without any criteria. Based on this list a new list with data objects
-    (file, folders, etc.) is generated. Via a factory pattern. In this way files and folders can be altered without
+    From starting point “temporary location” a data-list is generated containing all data items. Data items like
+    folders, (sub)folders, files, etc. are registered but not loaded.
+
+    Based on this raw data list each item should then be converted to a corresponding object. Each item contains a
+    relative path and a object name. Via a factory pattern. In this way files and folders can be altered without
     actually loading the data.
 
     Note:
@@ -224,16 +239,16 @@ class Generate(object):
 
     Args:
         arguments (list) : A list of arguments meant for the whole class.
-        dictionary (dict) : A dict of value and keys meant for the whole class.
+        dictionary (dict) : The dictionary contains the relevant extension for each media type.
         options (list) : A default optional argument list meant for methods.
 
     Raises:
         Explain exceptions that are raised during execution. I.e. ValueError.
     """
-    #: start_path(str): The variable: "start path" holds the path where the data is stored temporary and raw.
-    start_path = ''
-    #: final_path(str): The variable: "final path" contains the path where eventually the data will be saved.
-    final_path = ''
+    #: temporary_location(str): The variable: "temporary location" for undefined and raw data.
+    temporary_location = ''
+    #: final_location(str): The variable: "final location" contains the path where eventually the data will be saved.
+    final_location = ''
 
     def __init__(self, *args, **kwargs):
         super().__init__()
@@ -242,11 +257,13 @@ class Generate(object):
         self.argument = args
 
     def select(self, options=None):
-        """2-8-2017: The method: "select", is part of class: "Manager".
+        """2-8-2017: The method: "select", is part of class: "Generate".
 
-        From the default location look for files and directories. Check if it is a file or a directory.
+        From the temporary location look for files and directories. Check if it is a file or a directory.
         If it is a directory then go inside. Locate the file and check the filename(if it contains a pattern like
         S##E##. Verify the file size. If all legit than add to list for renaming.
+
+        Via options you can pass a media-type. I.e. Movies. Applicable extension are: ".avi, .mp4, .mkv"
 
         Args:
             options (list): Select extension list I.e. Music, Photo, Movies, etc.
@@ -261,8 +278,6 @@ class Generate(object):
             #: files(list): This list contains the required extensions.
             files = self.dictionary[self.options]
 
-            select = [glob.glob(file) for file in files]
-
-            return [os.path.realpath(file) for file in select]
+            return [glob.glob(self.temporary_location + '/**/*' + file, recursive=True) for file in files]
         else:
             return 'No extension selection has bin made.'

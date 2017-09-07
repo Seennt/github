@@ -1,26 +1,23 @@
-{% extends 'todo_list/navbar.html' %}
 {% load i18n bootstrap3 static compress %}
-
-{% block navbar_items %}
-{% for item in items %}
-    {% if item.site %}
-        {% if item.glyphicon %}
-            {% if item.name != 'authenticate' %}
-            <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
-                <a href="{% url item.name|add:':index' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
-            </li>
-            {% endif %}
-            {% if user.is_authenticated %}
+{% if item.glyphicon %}
+    {% if item.name == 'authenticate' %}
+        {% if user.is_authenticated %}
             <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
                 <a href="{% url item.name|add:':logout' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
             </li>
-            {% endif %}
-
         {% else %}
-        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
-            <a href="{% url item.name|add:':index' %}">{{ item.verbose_name }}</a>
-        </li>
+            <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+                <a href="{% url item.name|add:':login' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>Login</a>
+            </li>
         {% endif %}
+    {% elif user.is_superuser %}
+        <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+            <a href="{% url item.name|add:':index' %}"><span class="glyphicon glyphicon-{{ item.glyphicon }}"></span>{{ item.verbose_name }}</a>
+        </li>
     {% endif %}
-{% endfor %}
-{% endblock %}
+
+{% else %}
+    <li class="{% if request.get_full_path|slice:'1:'|slice:'-1' == item.name %}active{% endif %}">
+    <a href="{% url item.name|add:':index' %}">{{ item.verbose_name }}</a>
+    </li>
+{% endif %}
