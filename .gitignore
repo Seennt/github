@@ -13,7 +13,7 @@ application/seennt/management/__pycache__/
 application/seennt/migrations/__pycache__/
 system/__pycache__/
 system/templates/__pycache__/
-local_settings.py
+system/local_settings.py
 mydb.dump
 setpsql.bat
 README_LOCAL.md
