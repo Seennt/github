@@ -1,6 +1,8 @@
 """
-Django settings for system project on Heroku. For more info, see:
-https://github.com/heroku/heroku-django-template
+!!! This file is excluded for production. Therefor it is added to .gitignore.
+
+Django settings for system project on local development server. For more info, see:
+https://coderwall.com/p/q5nepa/how-to-setup-local_settings-py-for-your-django-1-4-2-project
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.10/topics/settings/
@@ -31,7 +33,7 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgresql-animated-51412',
+        'NAME': 'local-postgresql-51412',
         'USER': 'postgres',
         'PASSWORD': 'u0360i3',
         'HOST': 'localhost',

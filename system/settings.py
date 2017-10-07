@@ -87,7 +87,6 @@ TEMPLATES = [
                 'application.context_processors.labels_processor',
                 'application.context_processors.sites_processor',
             ],
-            'debug': DEBUG,
         },
     },
 ]
@@ -98,10 +97,7 @@ WSGI_APPLICATION = 'system.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config()
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -138,7 +134,6 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-# ALLOWED_HOSTS = ['localhost']
 ALLOWED_HOSTS = ['seennt.com', 'seennt.herokuapp.com']
 
 # Static files (CSS, JavaScript, Images)
@@ -240,3 +235,8 @@ BOOTSTRAP3 = {
         'inline': 'bootstrap3.renderers.InlineFieldRenderer',
     },
 }
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

@@ -7,11 +7,21 @@ db.sqlite3
 docs
 application/todo_list/Tasklist.md
 funda_fotografie
-todo_list
 application/__pycache__/
 application/seennt/__pycache__/
 application/seennt/management/__pycache__/
 application/seennt/migrations/__pycache__/
 system/__pycache__/
 system/templates/__pycache__/
-application/organizer/
+local_settings.py
+mydb.dump
+setpsql.bat
+README_LOCAL.md
+application/todo_list/__pycache__/
+application/todo_list/migrations/__pycache__/
+application/todo_list/templatetags/__pycache__/
+utility/__pycache__/
+utility/authenticate/__pycache__/
+utility/authenticate/management/__pycache__/
+utility/authenticate/migrations/__pycache__/
+README_NON PUBLIC.md
