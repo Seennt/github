@@ -82,9 +82,10 @@ Rename interpreter to: Virtual-environment-Python-3.6.1
 - Would you like to add universioned to .gitignore? cancel
 
 ## Terminal
-- Change the default parameter format to in case of psql: chcp 1252
+- Change the console page code to 1252 so psql is compatible with UTF-8. this can be done via: chcp 1252. 
+(Is set via setpsql.bat)
 
-Reroute project directory: trl+alt+s -> tools -> terminal, set project-path:
+Reroute project directory: ctrl+alt+s -> tools -> terminal, set project-path:
 
     mklink /J "C:/Users/<username>/Amazon drive/<project_name>" C:/Users/<username>/<project_name>
      
@@ -95,7 +96,7 @@ Therefor:
 # PostgreSQL
 As a best-practise installing PostgreSQL local requires:
     
-    set PGUSER=postgres
+    set PGUSER=postgres (Is set via setpsql.bat)
     set PGPASSWORD=<passwd>
     set DATABASE_URL=postgresql://localhost:5432/postgresql-animated-51412
 
@@ -107,7 +108,7 @@ For now development is done at a windows machine, meaning that
 
 Reply with the following:
     
-    'env' is not recognized as an inpipternal or external command, operable program or batch file.
+        'env' is not recognized as an inpipternal or external command, operable program or batch file.
     
 # Frontend
 This seennt platform will be equipped with the Django Template language(DTL) in combination with:
