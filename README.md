@@ -3,7 +3,7 @@
 This repo is for development and testing purpose.
 
 # Project documentation
-A structured manner to write documentation for the platform and each individual application.
+A structured manner to write documentation for a platform and each individual application.
 
 ## Production & Development
 Production settings:
