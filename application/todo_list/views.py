@@ -4,8 +4,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from application.todo_list import models, forms
 from django.core.paginator import PageNotAnInteger, EmptyPage
-from django.shortcuts import get_list_or_404, redirect
-from application.todo_list.pagination import Pages
+from django.shortcuts import get_list_or_404, redirect, render
+from application.todo_list.pagination import
+
 from django.contrib import messages
 
 
@@ -80,7 +81,6 @@ class Detail(SuccessMessageMixin, generic.UpdateView):
     model = models.Action
     form_class = forms.ActionForm
     success_url = reverse_lazy('todo-list:index')
-    success_message = 'Action is updated, a explanation is given.'
     template_name_suffix = '_update'
 
     def get_context_data(self, **kwargs):
@@ -100,10 +100,22 @@ class Detail(SuccessMessageMixin, generic.UpdateView):
             if 'completed' in self.request.POST:
                 self.object.completed = True
 
-            self.object = form.save()
-            formset.instance = self.object
-            formset.save()
-            return super().form_valid(form)
+                if self.request.POST['detail_set-0-explanation']:
+                    self.object = form.save()
+                    formset.instance = self.object
+                    formset.save()
+                    self.success_message = 'Action is completed!'
+                    return super().form_valid(form)
+                else:
+                    messages.warning(self.request, 'Action can\'t be completed as there is no explanation given.')
+                    return redirect(self.success_url)
+            else:
+                self.object = form.save()
+                formset.instance = self.object
+                formset.save()
+                self.success_message = 'Action is updated, an explanation added/removed or modified.'
+                return super().form_valid(form)
+
         else:
             return self.render_to_response(self.get_context_data(form=form))
 
