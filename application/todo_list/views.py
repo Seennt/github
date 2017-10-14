@@ -4,9 +4,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from application.todo_list import models, forms
 from django.core.paginator import PageNotAnInteger, EmptyPage
-from django.shortcuts import get_list_or_404, redirect, render
-from application.todo_list.pagination import
-
+from django.shortcuts import get_list_or_404, redirect
+from application.todo_list.pagination import Pages
 from django.contrib import messages
 
 
