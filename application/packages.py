@@ -34,10 +34,10 @@ class Item(object):
     Provide a class description here. A good explanation of a class provides a higher readability of the code.
 
     Note:
-        Do not include the `self` parameter in the ``Args`` section of the __init__ method.
-        args are defined at class level.
-        Class attributes, variables owned by the class itself. All values of class attributes are the same
-        for each Instance.
+        - Do not include the `self` parameter in the ``Args`` section.
+        - The __init__ method is documented as a docstring on the __init__ method itself.
+        - Class attributes, variables owned by the class itself. All values of class attributes are the same
+          for each Instance.
 
     """
 
@@ -129,10 +129,11 @@ class Labels(object):
     Produce a list of item objects that a defiined as a Label.
 
     Note:
-        Do not include the `self` parameter in the ``Args`` section of the __init__ method.
-        args are defined at class level.
-        Class attributes, variables owned by the class itself. All values of class attributes are the same
-        for each Instance.
+        - Do not include the `self` parameter in the ``Args`` section.
+        - The __init__ method is documented as a docstring on the __init__ method itself.
+        - Class attributes, variables owned by the class itself. All values of class attributes are the same
+          for each Instance.
+
 
     """
 
@@ -175,10 +176,11 @@ class Sites(object):
     Produce a list of item objects that a defiined as a Site.
 
     Note:
-        Do not include the `self` parameter in the ``Args`` section of the __init__ method.
-        args are defined at class level.
-        Class attributes, variables owned by the class itself. All values of class attributes are the same
-        for each Instance.
+        - Do not include the `self` parameter in the ``Args`` section.
+        - The __init__ method is documented as a docstring on the __init__ method itself.
+        - Class attributes, variables owned by the class itself. All values of class attributes are the same
+          for each Instance.
+
 
     """
 
