@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" Module: data as part of: organize
+""" Module: content as part of: organize
 
     Created by: Reinier on 16-8-2017. Collected data comes in a variety of formats. Data should be organized in a
     structured manner to achieve a better usability of available data like movies, series, pictures, documents, etc.
@@ -20,7 +20,7 @@ import os
 
 
 class Data(object):
-    """: The class: "Data", is part of module: "structure".
+    """: The class: "Data", is part of module: "content".
 
     Provide a class description here. A good explanation of a class provides a higher readability of the code.
 
@@ -50,7 +50,7 @@ class Data(object):
 
 
 class Folder(Data):
-    """: The class: "Folder", is part of module: "object".
+    """: The class: "Folder", is part of module: "content".
 
     Provide a class description here. A good explanation of a class provides a higher readability of the code.
 
@@ -86,7 +86,7 @@ class Folder(Data):
 
 
 class File(Data):
-    """: The class: "File", is part of module: "object".
+    """: The class: "File", is part of module: "content".
 
     Provide a class description here. A good explanation of a class provides a higher readability of the code.
 
@@ -138,7 +138,7 @@ class File(Data):
 
 
 class Structure(object):
-    """: The class: "Structure", is part of module: "object".
+    """: The class: "Structure", is part of module: "content".
 
     As an aspect of organizing data gathering information of an object is essential. Information that should be
     gathered is a pattern and title and/or name. If this information can’t be gathered, manual selection via a
@@ -222,7 +222,7 @@ class Structure(object):
 
 
 class Generate(object):
-    """: The class: "Generate", is part of module: "object".
+    """: The class: "Generate", is part of module: "content".
 
     From starting point “temporary location” a data-list is generated containing all data items. Data items like
     folders, (sub)folders, files, etc. are registered but not loaded.

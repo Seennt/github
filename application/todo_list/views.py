@@ -33,7 +33,13 @@ class List(LoginRequiredMixin, generic.ListView):
 
     # Load the companies
     def get_queryset(self):
-        actions = get_list_or_404(models.Action.objects.order_by('completed', 'created'))
+        if 'filter' in self.request.GET:
+            print('test')
+            filter_val = self.request.GET.get('filter', None)
+            actions = get_list_or_404(models.Action.objects.filter(subject=filter_val).order_by('completed', 'created'))
+        else:
+            actions = get_list_or_404(models.Action.objects.order_by('completed', 'created'))
+
         return actions
 
     def get_context_data(self, **kwargs):
@@ -58,6 +64,8 @@ class List(LoginRequiredMixin, generic.ListView):
         # Hook function 'pages_to_show' to object 'pages'.
         setattr(pages, 'pages_to_show', paginator.pages_to_show(page))
         context['pages'] = pages
+
+        context['unique_action_subject_list'] = models.Action.objects.distinct('subject')
 
         return context
 
@@ -201,7 +209,7 @@ class Detail(SuccessMessageMixin, generic.UpdateView):
                 self.object = form.save()
                 formset.instance = self.object
                 formset.save()
-                self.success_message = 'Action is updated, an explanation added/removed or modified.'
+                self.success_message = 'Action is updated, an explanation is added/removed or modified.'
                 return super().form_valid(form)
 
         else:

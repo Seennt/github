@@ -4,12 +4,22 @@
 {% bootstrap_messages %}
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <form action="{% url 'todo-list:create' %}">
-                {% bootstrap_button 'Add new action' button_type='submit' button_class='btn btn-primary pull-right' %}
-            </form>
+
+                <div class="col-xs-7 col-sm-5 col-md-3 col-lg-3 col-md-offset-7 col-sm-offset-5 col-xs-offset-0 col-lg-offset-7">
+                <form method="get" action="{% url 'todo-list:index' %}">
+                    <select name="filter" id="filter" class="form-control" onchange="this.form.submit()">
+                        {% for subject in unique_action_subject_list %}
+                            <option value="{{ subject.subject }}">{{ subject.subject }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+                </div>
+                <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 col-lg-offset-0">
+                <form action="{% url 'todo-list:create' %}">
+                    {% bootstrap_button 'Add new action' button_type='submit' button_class='btn btn-primary pull-right' %}
+                </form>
+                </div>
         </div>
-    </div>
 
     <div class="row">
         <table class="table table-hover">
