@@ -20,7 +20,7 @@ from django.views import generic
 from application.todo_list import models, forms
 from django.core.paginator import PageNotAnInteger, EmptyPage
 from django.shortcuts import get_list_or_404, redirect
-from application.todo_list.pagination import Pages
+from facility.pagination import Pages
 from django.contrib import messages
 
 
@@ -33,6 +33,16 @@ class List(LoginRequiredMixin, generic.ListView):
 
     # Load the companies
     def get_queryset(self):
+        """22-10-2017: The method: "get_queryset", is part of class: "List".
+
+        Load the Action object to display. The required objects are ordered by completed and date created.
+        In addition a filter option based on subject is applicable. Initially it will load the default list and
+        after setting a filter the list will be reduced.
+
+        Returns:
+            list: A list of object containing actions.
+
+        """
         if 'filter' in self.request.GET:
             print('test')
             filter_val = self.request.GET.get('filter', None)
@@ -43,6 +53,15 @@ class List(LoginRequiredMixin, generic.ListView):
         return actions
 
     def get_context_data(self, **kwargs):
+        """22-10-2017: The method: "get_context_data", is part of class: "List".
+
+        In addition to the list of action objects pagination and a unique action subject list should be available
+        for our template system. To respectively divide the objects in pages and provide a unique list for our filter.
+
+        Returns:
+            list: A list of object containing actions.
+
+        """
         context = super().get_context_data(**kwargs)
         context['fields'] = ['completed', 'created', 'description', 'subject', 'filed']
 
@@ -102,7 +121,6 @@ class Action(generic.CreateView):
             object: Posted action content.
 
         """
-
         if 'cancel' in self.request.POST:
             return redirect('todo-list:index')
         else:
