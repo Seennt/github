@@ -26,16 +26,33 @@ from django.contrib import messages
 
 # Create your views here.
 class List(LoginRequiredMixin, generic.ListView):
+    """: The class: "List", is part of module: "views".
+
+   Load the Action object to display.
+
+    Note:
+        - Do not include the `self` parameter in the ``Args`` section.
+        - The __init__ method is documented as a docstring on the __init__ method itself.
+        - Class attributes, variables owned by the class itself. All values of class attributes are the same
+          for each Instance.
+
+    """
+    #: login_url(str): Login is required.
     login_url = 'authenticate:login'
+
     # redirect_field_name = 'todo-list:create'
+
+    #: template_name(str): The page to display.
     template_name = 'todo_list/index.html'
+
+    #: paginate_by(int): Amount of action objects to display.
     paginate_by = 10
 
     # Load the companies
     def get_queryset(self):
         """22-10-2017: The method: "get_queryset", is part of class: "List".
 
-        Load the Action object to display. The required objects are ordered by completed and date created.
+        The required objects are ordered by completed and date created.
         In addition a filter option based on subject is applicable. Initially it will load the default list and
         after setting a filter the list will be reduced.
 
@@ -89,7 +106,7 @@ class List(LoginRequiredMixin, generic.ListView):
         return context
 
 
-class Action(generic.CreateView):
+class Action(LoginRequiredMixin, generic.CreateView):
     """: The class: "Action", is part of module: "views".
 
     Add a action to the database.
@@ -100,12 +117,14 @@ class Action(generic.CreateView):
         - Class attributes, variables owned by the class itself. All values of class attributes are the same
           for each Instance.
 
-    Args:
-        model (object) : A object that represents the Action table.
-        fields (list) : List that contains the fields that needs to be added.
     """
+    #: login_url(str): Login is required.
+    login_url = 'authenticate:login'
 
+    #: model(object):A record of the table action.
     model = models.Action
+
+    #: fields(list): List that contains the fields that needs to be added.
     fields = ['description', 'subject']
 
     def post(self, request, *args, **kwargs):
@@ -154,7 +173,7 @@ class Action(generic.CreateView):
             return reverse_lazy('todo-list:index')
 
 
-class Detail(SuccessMessageMixin, generic.UpdateView):
+class Detail(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     """: The class: "Detail", is part of module: "views".
 
     Add a detailed information(Explanation) to action a certain action, and store this information in table detail.
@@ -166,17 +185,24 @@ class Detail(SuccessMessageMixin, generic.UpdateView):
         - Class attributes, variables owned by the class itself. All values of class attributes are the same
           for each Instance.
 
-    Args:
-        model (object) : A object that represents  the Detail table.
-        form_class (object) : A object that holds the detailed form that should be displayed.
-        success_url (str) : URL to go to after added a explanation.
-        template_name_suffix (str) : The UpdateView page displayed. Eg. action_update.html
     """
+    #: login_url(str): Login is required.
+    login_url = 'authenticate:login'
 
+    #: model(object):A record of the table action.
     model = models.Action
-    form_class = forms.ActionForm
+
+    #: success_url(str): URL to go to after successful removal.
     success_url = reverse_lazy('todo-list:index')
+
+    #: success_message(str): A message displayed on the delete page conformation.
+    success_message = 'Action: "%(description)s" is deleted.'
+
+    #: template_name_suffix(str): The UpdateView page displayed. Eg. action_delete.html
     template_name_suffix = '_update'
+
+    #: form_class(object): A object that holds the detailed form that should be displayed.
+    form_class = forms.ActionForm
 
     def get_context_data(self, **kwargs):
         """18-10-2017: The method: "get_context_data", is part of class: "Action".
@@ -234,11 +260,10 @@ class Detail(SuccessMessageMixin, generic.UpdateView):
             return self.render_to_response(self.get_context_data(form=form))
 
 
-class Remove(SuccessMessageMixin, generic.DeleteView):
-    class Remove(object):
-        """: The class: "Remove", is part of module: "views".
+class Remove(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
+    """: The class: "Remove", is part of module: "views".
 
-        Remove a action from the database.
+    Remove a action from the database.
 
     Note:
         - Do not include the `self` parameter in the ``Args`` section.
@@ -246,14 +271,18 @@ class Remove(SuccessMessageMixin, generic.DeleteView):
         - Class attributes, variables owned by the class itself. All values of class attributes are the same
           for each Instance.
 
-        Args:
-            model (object) : A record of the table action.
-            success_url (str) : URL to go to after successfull removal.
-            success_message (str) : A message that is displayed on the delete page conformation.
-            template_name_suffix (str) : The DeleteView page displayed. Eg. action_delete.html
-        """
+    """
+    #: login_url(str): Login is required.
+    login_url = 'authenticate:login'
 
+    #: model(object):A record of the table action.
     model = models.Action
+
+    #: success_url(str): URL to go to after successful removal.
     success_url = reverse_lazy('todo-list:index')
+
+    #: success_message(str): A message displayed on the delete page conformation.
     success_message = 'Action: "%(description)s" is deleted.'
+
+    #: template_name_suffix(str): The DeleteView page displayed. Eg. action_delete.html
     template_name_suffix = '_delete'

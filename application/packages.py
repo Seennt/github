@@ -39,18 +39,18 @@ class Item(object):
         - Class attributes, variables owned by the class itself. All values of class attributes are the same
           for each Instance.
 
+    Attributes:
+        name (str) : Name for a specific item.
+        site (str) : A dict of value and keys meant for the whole class.
+        verbose_name (str) : Human readable application name
+        glyphicon (str) : Glyphicon name.
+
     """
 
     def __init__(self, application):
         """12-10-2017: The method: "__init__", is part of class: "Item".
 
         A constructor method for the Item class. This item is part of a factory pattern.
-
-        Args:
-            name (str) : Name for a specific item.
-            site (str) : A dict of value and keys meant for the whole class.
-            verbose_name (str) : Human readable application name
-            glyphicon (str) : Glyphicon name.
 
         Returns:
             object: Object(Item) with a list of navigation items.
@@ -134,16 +134,14 @@ class Labels(object):
         - Class attributes, variables owned by the class itself. All values of class attributes are the same
           for each Instance.
 
-
     """
-
     def __init__(self):
         """12-10-2017: The method: "__init__", is part of class: "Labels".
 
         A constructor method for the Labels class. This item is part of a factory pattern. Eventually this list
         of objects is called and marked-up via the Django Template Language.
 
-        Args:
+        args:
             label (list) : List of Item objects.
 
         Returns:
@@ -181,16 +179,14 @@ class Sites(object):
         - Class attributes, variables owned by the class itself. All values of class attributes are the same
           for each Instance.
 
-
     """
-
     def __init__(self):
         """12-10-2017: The method: "__init__", is part of class: "Sites".
 
         A constructor method for the Sites class. This item is part of a factory pattern. Eventually this list
         of objects is called and marked-up via the Django Template Language.
 
-        Args:
+        args:
             sites (list) : List of Item objects.
 
         Returns:
