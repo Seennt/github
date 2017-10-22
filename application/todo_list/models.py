@@ -17,7 +17,8 @@ from django.urls import reverse
 class Action(models.Model):
     """: The class: "Action", is part of module: "models".
 
-    A Action model to represent the database table Action.
+    A Action model to represent the database table Action. A action that needs to be done to fulfill a particular
+    goal.
 
     Note:
         - Do not include the `self` parameter in the ``Args`` section.
@@ -45,7 +46,8 @@ class Action(models.Model):
 class Detail(models.Model):
     """: The class: "Detail", is part of module: "models".
 
-    Provide a class description here. A good explanation of a class provides a higher readability of the code.
+    A Detail model to represent the database table Detail. details holds the steps that explains how a certain
+    action is solved or what its actual status is.
 
     Note:
         - Do not include the `self` parameter in the ``Args`` section.
