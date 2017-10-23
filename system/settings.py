@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     # System utilities
     'utility.authenticate.apps.AuthenticateConfig',
+    'utility.collect',
 
 ]
 
