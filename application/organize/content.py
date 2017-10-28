@@ -18,6 +18,7 @@
 import glob
 import os
 
+test = ""
 
 class Data(object):
     """: The class: "Data", is part of module: "content".
@@ -240,7 +241,6 @@ class Generate(object):
     Args:
         arguments (list) : A list of arguments meant for the whole class.
         dictionary (dict) : The dictionary contains the relevant extension for each media type.
-        options (list) : A default optional argument list meant for methods.
 
     Raises:
         Explain exceptions that are raised during execution. I.e. ValueError.
@@ -252,7 +252,6 @@ class Generate(object):
 
     def __init__(self, *args, **kwargs):
         super().__init__()
-        self.options = []
         self.dictionary = kwargs
         self.argument = args
 
@@ -266,17 +265,16 @@ class Generate(object):
         Via options you can pass a media-type. I.e. Movies. Applicable extension are: ".avi, .mp4, .mkv"
 
         Args:
-            options (list): Select extension list I.e. Music, Photo, Movies, etc.
+            options (str): Select extension list I.e. Music, Photo, Movies, etc.
 
         Returns:
             list: A list with files larger then 6Mb. Holiding there absolute path.
 
         """
         if options is not None:
-            self.options = options
 
             #: files(list): This list contains the required extensions.
-            files = self.dictionary[self.options]
+            files = self.dictionary[options]
 
             return [glob.glob(self.temporary_location + '/**/*' + file, recursive=True) for file in files]
         else:

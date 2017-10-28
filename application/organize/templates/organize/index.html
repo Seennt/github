@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load compress static i18n bootstrap3 %}
+
+<!-- META html meta data -->
+{% block meta %}
+{% include 'organize/meta.html' %}
+{% endblock %}
+
+<!-- CSS external style sheets -->
+{% block style %}
+{% include 'organize/style.html' %}
+{% endblock %}
+
+<!-- JS/JQUERY external scripts -->
+{% block script %}
+{% include 'organize/script.html' %}
+{% endblock %}
+
+{% block header %}
+{% include 'organize/header.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'organize/content.html' %}
+{% endblock %}
+
+{% block footer %}
+{% include 'organize/footer.html' %}
+{% endblock %}
