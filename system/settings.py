@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     # System applications
     'application.seennt.apps.SeenntConfig',
     'application.todo_list.apps.TodoListConfig',
+    'application.organize.apps.OrganizeConfig',
+    'application.share_score.apps.ShareScoreConfig',
 
     # System utilities
     'utility.authenticate.apps.AuthenticateConfig',

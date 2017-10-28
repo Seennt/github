@@ -25,5 +25,7 @@ urlpatterns = [
     url(r'', include('application.seennt.urls', namespace='seennt')),
     url(r'^auth/', include('utility.authenticate.urls', namespace='authenticate')),
     url(r'^todo-list/', include('application.todo_list.urls', namespace='todo-list')),
+    url(r'^organize/', include('application.organize.urls', namespace='organize')),
+    url(r'^share-score/', include('application.share_score.urls', namespace='share-score')),
     url(r'^admin/', admin.site.urls),
 ]
