@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" Module: find as part of: share_score
+""" Module: find as part of: collect
     
     Created by: Reinier on 23-10-2017.Provide a module description here. A good explanation for a module provides
     a higher readability and will improve implementation.
