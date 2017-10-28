@@ -17,5 +17,5 @@ from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name="organize/index.html"), name='index'),
+    url(r'^$', TemplateView.as_view(template_name="share_score/index.html"), name='index'),
 ]
