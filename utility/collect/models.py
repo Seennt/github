@@ -135,7 +135,10 @@ class Selector(models.Model):
 
     """
     #: expression(ForeignKey): A Xpath of CSS expression.
-    expression = models.ForeignKey(Config, on_delete=models.CASCADE)
+    selector = models.ForeignKey(Config, on_delete=models.CASCADE)
+
+    #: processor(CharField): A process before... E.g. Time conversion.
+    expression = models.CharField(default='', max_length=200)
 
     #: processor(CharField): A process before... E.g. Time conversion.
     processor = models.CharField(default='', max_length=200)
@@ -151,7 +154,11 @@ class FormData(models.Model):
     form = models.ForeignKey(Config, on_delete=models.CASCADE)
 
     #: form_data(CharField): Form field required for html request.
-    form_data = models.CharField(default='', max_length=64)
+    form_field = models.CharField(default='', max_length=64)
+
+    class Meta:
+        #: verbose_name_plural(str): A human readable plural name displayed within admin.
+        verbose_name_plural = 'Form data'
 
 
 class Meta(models.Model):
@@ -180,7 +187,7 @@ class Cookie(models.Model):
     cookie_data = models.CharField(default='', max_length=64)
 
 
-class Flags(models.Model):
+class Flag(models.Model):
     """: The class: "Flags", is part of module: "models".
 
     Flags sent to the request, can be used for logging or similar purposes.
