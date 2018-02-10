@@ -19,6 +19,10 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
+# Redirect https://
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "^!29f51-fid11(yfi2@%q(y5&=u6jb!&8vz=b*wa#-e)4=y1#n"
 
@@ -48,13 +52,9 @@ INSTALLED_APPS = [
     # System applications
     'application.seennt.apps.SeenntConfig',
     'application.todo_list.apps.TodoListConfig',
-    'application.organize.apps.OrganizeConfig',
-    'application.share_score.apps.ShareScoreConfig',
 
     # System utilities
     'utility.authenticate.apps.AuthenticateConfig',
-    'utility.collect',
-
 ]
 
 MIDDLEWARE = [
