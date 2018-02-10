@@ -21,6 +21,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Redirect https://
 SECURE_SSL_REDIRECT = True
+USE_X_FORWARDED_HOST = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # SECURITY WARNING: keep the secret key used in production secret!
