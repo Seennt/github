@@ -6,7 +6,7 @@ constantly==15.1.0
 cryptography==2.1.1
 cssselect==1.0.1
 dj-database-url==0.4.1
-Django==1.11.1
+Django==1.11.7
 django-appconf==1.0.2
 django-bootstrap3==8.2.3
 django-bootstrap3-sass==3.3.2.2
@@ -36,3 +36,4 @@ Twisted==17.9.0
 w3lib==1.18.0
 whitenoise==3.2
 zope.interface==4.4.3
+uwsgi==2.0.16
